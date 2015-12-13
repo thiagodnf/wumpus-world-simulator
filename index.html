@@ -22,6 +22,7 @@
 		<link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
 		<link rel="manifest" href="img/favicon/manifest.json">
+		<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
 		<meta name="theme-color" content="#ffffff">
@@ -46,7 +47,8 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">About</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#controls" >Controls</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#about" >About</a></li>
                 </ul>
 
             </div><!--/.nav-collapse -->
@@ -96,6 +98,41 @@
 						<button type="submit" class="btn btn-primary" id="btn-restart">Restart</button>
 					</div>
 				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="modal" tabindex="-1" role="dialog" id="controls" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Controls</h4>
+				  </div>
+				<div class="modal-body">
+					<img src="img/controls.png" class="img-responsive"/>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>				
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="modal" tabindex="-1" role="dialog" id="about" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">About</h4>
+				  </div>
+				<div class="modal-body">
+					<p>Description</p>
+					<p>Hunt the Wumpus is an early computer game, based on a simple hide and seek format featuring a mysterious monster (the Wumpus) that lurks deep inside a network of rooms. It was originally a text-based game written in BASIC. It has since been ported to various programming languages and platforms including graphical versions.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>				
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
