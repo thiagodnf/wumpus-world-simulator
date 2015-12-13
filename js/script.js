@@ -46,7 +46,7 @@ function init(){
 function setEventHandlers(){
 	// Keyboard
 	window.addEventListener("keydown", onKeydown, false);
-	window.addEventListener("keyup", player.onKeyup, false);
+	window.addEventListener("keyup", onKeyup, false);
 
 	// Window resize
 	resizeCanvas();
@@ -60,28 +60,29 @@ function resizeCanvas(){
 
 // Keyboard key down
 function onKeydown(e) {
-	if (player) {
-		keys.onKeyDown(e);
-	};
-};
-
-// Keyboard key up
-function onKeyup(e) {
-	if (player) {
-		keys.onKeyUp(e);
-	};
-};
-
-function update(){
+	// if (player) {
+	// 	keys.onKeyDown(e);
+	// };
+	keys.onKeyDown(e);
 
 	if(player.update(keys)){
 		player.score -= 10;
 	}
+};
+
+// Keyboard key up
+function onKeyup(e) {
+	// if (player) {
+	// 	keys.onKeyUp(e);
+	// };
+};
+
+function update(){
 
 	var deadWumpus = player.kill(keys);
 
 	if(deadWumpus){
-		player.score += 1000;		
+		player.score += 1000;
 		env.removeWumpus(deadWumpus);
 	}
 
@@ -91,7 +92,7 @@ function update(){
 		player.score += 1000;
 
 		env.removeGold(capturedGold);
-			
+
 		if(env.golds.length == 0){
 			isFinished = true;
 		}
@@ -141,7 +142,6 @@ function loadLanguage(){
 	$("#arrow-label").html("Arrow:".toLocaleString());
 	$("#gold-label").html("Remaining Golds:".toLocaleString());
 }
-
 
 $(function(){
 	init();

@@ -29,7 +29,8 @@ var Environment = function(i, j, width, height) {
 
 	this.randomInitialization = function(){
         this.visible = this.getMatrix(this.i, this.j);
-		
+        this.visible[0][0] = 1;
+        
 		this.golds = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
 		this.holes = this.generateRandomItens(Math.floor(this.i*this.j/16*2));
 		this.wumpus = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
@@ -37,7 +38,7 @@ var Environment = function(i, j, width, height) {
 
 	this.generateRandomItens = function(max){
 		var items = [];
-		
+
 		while(items.length < max){
 			var i = this.getRandomIntegerNumber(0, this.i-1);
 			var j = this.getRandomIntegerNumber(0, this.j-1);
@@ -54,7 +55,7 @@ var Environment = function(i, j, width, height) {
 				}
 			}
 		}
-	
+
 		return items;
 	}
 
@@ -65,13 +66,13 @@ var Environment = function(i, j, width, height) {
 			{i:1, j:0},
 			{i:1, j:1}
 		];
-		
+
 		for(var ind = 0; ind < invalidPos.length; ind++){
 			if(invalidPos[ind].i == i && invalidPos[ind].j == j){
 				return false;
 			}
 		}
-	
+
 		return true;
 	}
 

@@ -16,7 +16,7 @@ var Player = function(env, x, y) {
     this.direction = FACING_TO_DOWN;
     this.score = 0;
     this.arrow = Math.floor(this.env.i*this.env.j/16*1);
-    
+
     this.markAsVisible = function(){
         this.env.visible[this.getPosI()][this.getPosJ()] = 1;
     }

@@ -46,25 +46,51 @@ var Keys = function(up, left, right, down, space, enter) {
 			c = e.keyCode;
 		switch (c) {
 			case 37: // Left
-				that.left = false;
+				that.left = true;
 				break;
 			case 38: // Up
-				that.up = false;
+				that.up = true;
 				break;
 			case 39: // Right
-				that.right = false;
+				that.right = true;
 				break;
 			case 40: // Down
-				that.down = false;
+				that.down = true;
 				break;
 			case 32: // Space
-				that.space = false;
+				that.space = true;
 				break;
 			case 13: // enter
-				that.enter = false;
+				that.enter = true;
 				break;
 		};
 	};
+
+	// var onKeyUp = function(e) {
+	//
+	// 	var that = this,
+	// 		c = e.keyCode;
+	// 	switch (c) {
+	// 		case 37: // Left
+	// 			that.left = false;
+	// 			break;
+	// 		case 38: // Up
+	// 			that.up = false;
+	// 			break;
+	// 		case 39: // Right
+	// 			that.right = false;
+	// 			break;
+	// 		case 40: // Down
+	// 			that.down = false;
+	// 			break;
+	// 		case 32: // Space
+	// 			that.space = false;
+	// 			break;
+	// 		case 13: // enter
+	// 			that.enter = false;
+	// 			break;
+	// 	};
+	// };
 
 	return {
 		up: up,
