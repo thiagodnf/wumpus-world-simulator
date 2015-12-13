@@ -30,7 +30,7 @@
         <!-- Bootstrap -->
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+        <link rel="stylesheet" href="css/bootstrap-select.min.css"/>
         <link rel="stylesheet" href="css/style.css"/>
     </head>
 <body>
@@ -46,11 +46,18 @@
                 <a class="navbar-brand" href="#">Wumpus World Simulator</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav">
 					<li><a href="#" data-toggle="modal" data-target="#controls" >Controls</a></li>
                     <li><a href="#" data-toggle="modal" data-target="#about" >About</a></li>
                 </ul>
-
+				<form class="navbar-form navbar-right" role="search">
+					<div class="form-group">
+						<select class="form-control" data-validation="required" id="select-language">
+							<option value="en-US" data-content="<img src='img/flags/en-us.png'> en-US">en-US</option>
+							<option value="pt-BR" data-content="<img src='img/flags/pt-br.png'> pt-BR">pt-BR</option>
+						</select>
+					</div>
+				</form>
             </div><!--/.nav-collapse -->
         </div>
     </nav>
@@ -63,7 +70,14 @@
         			</canvas>
                 </div>
                 <div class="card-footer">
-                    Score: <span id="score">0</span> <img src="img/arrow-icon.png" width="16px"/> Arrow: <span id="arrow">0</span> <img src="img/gold-icon.png" width="16px"/> Remaining Golds: <span id="gold">0</span>
+                    <span id="score-label">Score:</span> 
+					<span id="score">0</span> 
+					<img src="img/arrow-icon.png" width="16px"/> 
+					<span id="arrow-label">Arrow:</span>
+					<span id="arrow">0</span> 
+					<img src="img/gold-icon.png" width="16px"/> 
+					<span id="gold-label">Remaining Golds:</span> 
+					<span id="gold">0</span>
                 </div>
             </div>
     </div>
@@ -142,7 +156,9 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+	<script src="js/bootstrap-select.min.js"></script>
+    <script src="js/l10n.js"></script>
+    <script src="js/localizations.js"></script>
     <script src="js/core/resources.js"></script>
     <script src="js/core/environment.js"></script>
     <script src="js/core/keys.js"></script>

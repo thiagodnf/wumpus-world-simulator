@@ -6,6 +6,8 @@ var canvas,			// Canvas DOM element
 	env,
 	isAlive = true,
 	isFinished = false,
+	currentLanguage = "en-US",
+	language,
     player;
 
 // shim layer with setTimeout fallback
@@ -28,6 +30,8 @@ function init(){
 	ctx = canvas.getContext("2d");
 
 	assets = [];
+
+	language = [];
 
 	env = new Environment(15, 8, 64, 64);
 
@@ -130,11 +134,38 @@ function animate(){
 	window.requestAnimFrame(animate);
 }
 
+function loadLanguage(){
+	$("#score-label").html("Score:".toLocaleString());
+	$("#arrow-label").html("Arrow:".toLocaleString());
+	$("#gold-label").html("Remaining Golds:".toLocaleString());
+}
+
 
 $(function(){
 	init();
 
+	$('#select-language').selectpicker();
+
+	$("#select-language").change(function(){
+		String.locale = $(this).val();
+		localStorage.setItem("locale", String.locale);
+		loadLanguage();
+	});
+
+	var locale = localStorage.getItem("locale");
+
+	if(locale != null){
+		String.locale = locale;
+	}else{
+		String.locale = 'en-US';
+	}
+
+	$('#select-language').selectpicker('val', String.locale);
+
+	loadLanguage();
+
 	$(".card").width(canvas.width);
+
 	assets['facing_to_up'] = 'img/player_facing_to_up.png';
 	assets['facing_to_down'] = 'img/player_facing_to_down.png';
 	assets['facing_to_left'] = 'img/player_facing_to_left.png';

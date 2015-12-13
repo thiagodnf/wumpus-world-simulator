@@ -8,7 +8,7 @@ var Environment = function(i, j, width, height) {
   	this.j = j;
     this.width = width;
     this.height = height;
-    this.showAll = false;
+    this.showAll = true;
     this.visible = null;
     this.holes = [];
     this.wumpus = [];
@@ -145,18 +145,18 @@ var Environment = function(i, j, width, height) {
 
         for(var i = 0; i < this.holes.length; i++){
             ctx.drawImage(assets['hole'], this.holes[i].i*this.width, this.holes[i].j*this.height, this.width, this.height);
-            this.drawText(ctx, "Breeze", this.holes[i].i, this.holes[i].j+1, 3);
-            this.drawText(ctx, "Breeze", this.holes[i].i, this.holes[i].j-1, 3);
-            this.drawText(ctx, "Breeze", this.holes[i].i+1, this.holes[i].j, 3);
-            this.drawText(ctx, "Breeze", this.holes[i].i-1, this.holes[i].j, 3);
+            this.drawText(ctx, "Breeze".toLocaleString(), this.holes[i].i, this.holes[i].j+1, 3);
+            this.drawText(ctx, "Breeze".toLocaleString(), this.holes[i].i, this.holes[i].j-1, 3);
+            this.drawText(ctx, "Breeze".toLocaleString(), this.holes[i].i+1, this.holes[i].j, 3);
+            this.drawText(ctx, "Breeze".toLocaleString(), this.holes[i].i-1, this.holes[i].j, 3);
         }
 
         for(var i = 0; i < this.wumpus.length; i++){
             ctx.drawImage(assets['wumpus'], this.wumpus[i].i*this.width, this.wumpus[i].j*this.height, this.width, this.height);
-            this.drawText(ctx, "Stench", this.wumpus[i].i, this.wumpus[i].j+1, 14);
-            this.drawText(ctx, "Stench", this.wumpus[i].i, this.wumpus[i].j-1, 14);
-            this.drawText(ctx, "Stench", this.wumpus[i].i+1, this.wumpus[i].j, 14);
-            this.drawText(ctx, "Stench", this.wumpus[i].i-1, this.wumpus[i].j, 14);
+            this.drawText(ctx, "Stench".toLocaleString(), this.wumpus[i].i, this.wumpus[i].j+1, 14);
+            this.drawText(ctx, "Stench".toLocaleString(), this.wumpus[i].i, this.wumpus[i].j-1, 14);
+            this.drawText(ctx, "Stench".toLocaleString(), this.wumpus[i].i+1, this.wumpus[i].j, 14);
+            this.drawText(ctx, "Stench".toLocaleString(), this.wumpus[i].i-1, this.wumpus[i].j, 14);
         }
 
         for(var i = 0; i < this.golds.length; i++){
