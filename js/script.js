@@ -65,9 +65,7 @@ function onKeydown(e) {
 	// };
 	keys.onKeyDown(e);
 
-	if(player.update(keys)){
-		player.score -= 10;
-	}
+	animate();
 };
 
 // Keyboard key up
@@ -78,6 +76,9 @@ function onKeyup(e) {
 };
 
 function update(){
+	if(player.update(keys)){
+		player.score -= 10;
+	}
 
 	var deadWumpus = player.kill(keys);
 
@@ -132,7 +133,7 @@ function animate(){
 	draw();
 
 	// Request a new animation frame using Paul Irish's shim
-	window.requestAnimFrame(animate);
+	//window.requestAnimFrame(animate);
 }
 
 function loadLanguage(){
