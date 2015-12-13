@@ -135,7 +135,9 @@ function animate(){
 }
 
 function loadLanguage(){
-	$("#score-label").html("Score:".toLocaleString());
+	$("#btn-controls").html("Controls".toLocaleString());
+	$("#btn-about").html("About".toLocaleString());
+	$("#score-label").html("Score".toLocaleString());
 	$("#arrow-label").html("Arrow:".toLocaleString());
 	$("#gold-label").html("Remaining Golds:".toLocaleString());
 }
