@@ -27,6 +27,58 @@ var Environment = function(i, j, width, height) {
         this.golds.push({i:3, j:3});
     }
 
+	this.randomInitialization = function(){
+        this.visible = this.getMatrix(this.i, this.j);
+		
+		this.golds = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
+		this.holes = this.generateRandomItens(Math.floor(this.i*this.j/16*2));
+		this.wumpus = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
+    };
+
+	this.generateRandomItens = function(max){
+		var items = [];
+		
+		while(items.length < max){
+			var i = this.getRandomIntegerNumber(0, this.i-1);
+			var j = this.getRandomIntegerNumber(0, this.j-1);
+
+			if(this.validPosition(i, j)){
+				if( ! this.contains(items, i, j)){
+					if( ! this.contains(this.golds, i, j)){
+						if( ! this.contains(this.holes, i, j)){
+							if( ! this.contains(this.wumpus, i, j)){
+								items.push({i:i, j:j});
+							}
+						}
+					}
+				}
+			}
+		}
+	
+		return items;
+	}
+
+	this.validPosition = function(i, j){
+		var invalidPos = [
+			{i:0, j:0},
+			{i:0, j:1},
+			{i:1, j:0},
+			{i:1, j:1}
+		];
+		
+		for(var ind = 0; ind < invalidPos.length; ind++){
+			if(invalidPos[ind].i == i && invalidPos[ind].j == j){
+				return false;
+			}
+		}
+	
+		return true;
+	}
+
+	this.getRandomIntegerNumber = function(min, max){
+    	return Math.floor((Math.random() * (max)) + min);
+    };
+
     this.getMatrix = function(maxI, maxJ, initialValue){
         var initialValue = initialValue || 0;
         var matrix = new Array(maxI);
@@ -149,5 +201,5 @@ var Environment = function(i, j, width, height) {
     	ctx.stroke();
     }
 
-    this.init();
+    this.randomInitialization();
 };

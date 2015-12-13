@@ -3,7 +3,7 @@ body{
     color: #646464;
 }
 
-#score, #arrow{
+#score, #arrow, #gold{
     font-weight: bold;
     padding-right: 20px;
 }

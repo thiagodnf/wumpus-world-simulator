@@ -29,7 +29,7 @@ function init(){
 
 	assets = [];
 
-	env = new Environment(8, 8, 64, 64);
+	env = new Environment(15, 8, 64, 64);
 
 	player = new Player(env, 0, 0);
 
@@ -85,8 +85,12 @@ function update(){
 
 	if(capturedGold){
 		player.score += 1000;
+
 		env.removeGold(capturedGold);
-		isFinished = true;
+			
+		if(env.golds.length == 0){
+			isFinished = true;
+		}
 	}
 
 	if(env.hasAHole(player) || env.hasAWumpus(player)){
@@ -95,6 +99,7 @@ function update(){
 
 	$("#score").html(player.score);
 	$("#arrow").html(player.arrow);
+	$("#gold").html(env.golds.length);
 
 	if(!isAlive || isFinished){
 		env.showAll= true;
