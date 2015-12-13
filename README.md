@@ -8,6 +8,8 @@ Reference: [Wikipedia](https://en.wikipedia.org/wiki/Hunt_the_Wumpus)
 
 # Screenshot
 
+![alt tag](https://raw.githubusercontent.com/thiagodnf/wumpus-world-simulator/master/img/screenshot.png)
+
 ## Languages
 The Wumpus World Simulator is available at following languages:
 * en-US
