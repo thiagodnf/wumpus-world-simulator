@@ -1,0 +1,10 @@
+{
+  "name": "wumpus-world-simulator",
+  "description": "An early computer game, based on a simple hide and seek format featuring a mysterious monster (the Wumpus) that lurks deep inside a network of rooms.",
+  "repository": "https://github.com/thiagodnf/wumpus-world-simulator",
+  "website": "http://thiagodnf.github.io/wumpus-world-simulator",
+  "keywords": ["wumpus world","simulator"],
+  "env": {
+
+  }
+}
