@@ -139,6 +139,15 @@ function loadLanguage(){
 	$("#arrow-label").html("Arrow:".toLocaleString());
 	$("#gold-label").html("Remaining Golds:".toLocaleString());
 	$("#share-this-map").html("Share this Map".toLocaleString());
+	$("#modal-share-this-map-title").html("Share this Map".toLocaleString());
+	$(".btn-restart").html("Restart".toLocaleString());
+	$(".btn-close").html("Close".toLocaleString());
+	$("#label-game-over").html("Game Over".toLocaleString());
+	$("#label-congratulations").html("Congratulations".toLocaleString());
+	$("#label-controls").html("Controls".toLocaleString());
+	$("#label-about").html("About".toLocaleString());
+
+
 }
 
 function getURL(){

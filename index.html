@@ -96,7 +96,7 @@
 			<div class="modal-content">
 				<div class="modal-body">
 					<center>
-						<h3>Game Over</h3>
+						<h3 id="label-game-over">Game Over</h3>
 					</center>
 				</div>
 				<div class="modal-footer">
@@ -111,7 +111,7 @@
 			<div class="modal-content">
 				<div class="modal-body">
 					<center>
-						<h3>Congratulations</h3>
+						<h3 id="label-congratulations">Congratulations</h3>
 					</center>
 				</div>
 				<div class="modal-footer">
@@ -121,12 +121,12 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-	<div class="modal" tabindex="-1" role="dialog" id="modal-share-this-map" aria-labelledby="myModalLabel">
+	<div class="modal" tabindex="-1" role="dialog" id="modal-share-this-map" aria-labelledby="modal-share-this-map-title">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel">Share this map</h4>
+					<h4 class="modal-title" id="modal-share-this-map-title">Share this map</h4>
 				  </div>
 				<div class="modal-body">
 					<div class="form-group">
@@ -135,42 +135,42 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-	<div class="modal" tabindex="-1" role="dialog" id="controls" aria-labelledby="myModalLabel">
+	<div class="modal" tabindex="-1" role="dialog" id="controls" aria-labelledby="label-controls">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel">Controls</h4>
+					<h4 class="modal-title" id="label-controls">Controls</h4>
 				  </div>
 				<div class="modal-body">
 					<img src="img/controls.png" class="img-responsive"/>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-	<div class="modal" tabindex="-1" role="dialog" id="about" aria-labelledby="myModalLabel">
+	<div class="modal" tabindex="-1" role="dialog" id="about" aria-labelledby="label-about">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel">About</h4>
+					<h4 class="modal-title" id="label-about">About</h4>
 				  </div>
 				<div class="modal-body">
 					<p>Description</p>
 					<p>Hunt the Wumpus is an early computer game, based on a simple hide and seek format featuring a mysterious monster (the Wumpus) that lurks deep inside a network of rooms. It was originally a text-based game written in BASIC. It has since been ported to various programming languages and platforms including graphical versions.</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
