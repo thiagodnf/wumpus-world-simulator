@@ -6,7 +6,8 @@ String.toLocaleString({
 		"Arrow:": "Arrow:",
 		"Remaining Golds:": "Remaining Golds:",
 		"Controls": "Controls",
-		"About": "About"
+		"About": "About",
+		"Share this Map":"Share this map"
 	},
 	"pt-BR": {
 		"Breeze": "Brisa",
@@ -15,6 +16,7 @@ String.toLocaleString({
 		"Arrow:": "Fechas:",
 		"Remaining Golds:": "Ouros Restantes:",
 		"Controls": "Controles",
-		"About": "Sobre"
+		"About": "Sobre",
+		"Share this Map":"Compartilhe esse mapa"
 	}
 });

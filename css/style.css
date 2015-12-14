@@ -30,6 +30,9 @@ body{
     box-sizing: border-box;
 }
 
+#share-this-map{
+	margin-top: -2px;
+}
 
 #custom-bootstrap-menu.navbar-default .navbar-brand {
     color: rgba(255, 255, 255, 1);

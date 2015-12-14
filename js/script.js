@@ -107,10 +107,6 @@ function update(){
 	$("#arrow").html(player.arrow);
 	$("#gold").html(env.golds.length);
 
-	if(!isAlive || isFinished){
-		env.showAll= true;
-	}
-
 	if(!isAlive){
 		$("#game-over").modal("show");
 	}
@@ -139,13 +135,48 @@ function animate(){
 function loadLanguage(){
 	$("#btn-controls").html("Controls".toLocaleString());
 	$("#btn-about").html("About".toLocaleString());
-	$("#score-label").html("Score".toLocaleString());
+	$("#score-label").html("Score:".toLocaleString());
 	$("#arrow-label").html("Arrow:".toLocaleString());
 	$("#gold-label").html("Remaining Golds:".toLocaleString());
+	$("#share-this-map").html("Share this Map".toLocaleString());
+}
+
+function getURL(){
+	var url = "{";
+
+	url += "\"holes\":" + encodeToArray(env.holes) + ",";
+	url += "\"golds\":" + encodeToArray(env.golds) + ",";
+	url += "\"wumpus\":" + encodeToArray(env.wumpus) + "}";
+
+	return "#" + btoa(url);
+}
+
+function encodeToArray(array){
+	return JSON.stringify(array);
+}
+
+function getLink(){
+	return window.location.href+getURL();
+}
+
+function loadEnvironment(hash){
+	var link = atob(hash.replace('#', ''));
+
+	var obj = $.parseJSON(link);
+
+	env.holes = obj.holes;
+	env.golds = obj.golds;
+	env.wumpus = obj.wumpus;
+
+	animate();
 }
 
 $(function(){
 	init();
+
+	$(".btn-restart").click(function(){
+		location.reload();
+	});
 
 	$('#select-language').selectpicker();
 
@@ -168,6 +199,13 @@ $(function(){
 	loadLanguage();
 
 	$(".card").width(canvas.width);
+	$(".card-content").height(canvas.height);
+
+
+	$('#modal-share-this-map').on('shown.bs.modal', function () {
+		$('#textarea-link').text(getLink());
+	});
+
 
 	assets['facing_to_up'] = 'img/player_facing_to_up.png';
 	assets['facing_to_down'] = 'img/player_facing_to_down.png';
@@ -191,6 +229,12 @@ $(function(){
 	resources.onReady(function(){
 		for(key in assets){
 			assets[key] = resources.get(assets[key]);
+		}
+
+		var hash = window.location.hash;
+
+		if(hash != null && hash != ""){
+			loadEnvironment(hash);
 		}
 
 		animate();

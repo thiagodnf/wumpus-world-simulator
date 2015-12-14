@@ -86,6 +86,7 @@
 					<img src="img/gold-icon.png" width="16px"/>
 					<span id="gold-label">Remaining Golds:</span>
 					<span id="gold">0</span>
+					<button id="share-this-map" data-toggle="modal" data-target="#modal-share-this-map" class="btn btn-success btn-xs pull-right">Share this map</button>
                 </div>
             </div>
     </div>
@@ -93,16 +94,14 @@
     <div class="modal" role="dialog" id="game-over">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
-				<form id="form-new-player">
-					<div class="modal-body">
-						<center>
-							<h3>Game Over</h3>
-						</center>
-					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary" id="btn-restart">Restart</button>
-					</div>
-				</form>
+				<div class="modal-body">
+					<center>
+						<h3>Game Over</h3>
+					</center>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary btn-restart">Restart</button>
+				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
@@ -110,16 +109,34 @@
     <div class="modal" role="dialog" id="finished">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
-				<form id="form-new-player">
-					<div class="modal-body">
-						<center>
-							<h3>Congratulations</h3>
-						</center>
+				<div class="modal-body">
+					<center>
+						<h3>Congratulations</h3>
+					</center>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary btn-restart">Restart</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="modal" tabindex="-1" role="dialog" id="modal-share-this-map" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Share this map</h4>
+				  </div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="textarea-link">Link:</label>
+						<textarea class="form-control" rows="5" id="textarea-link"></textarea>
 					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary" id="btn-restart">Restart</button>
-					</div>
-				</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
