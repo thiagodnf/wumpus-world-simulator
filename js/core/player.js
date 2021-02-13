@@ -67,7 +67,12 @@ var Player = function(env, x, y) {
 			prevY = this.y;
 
 		// Up key takes priority over down
-		if (keys.up) {
+    
+        if(keys.help){
+            alert("pol");
+            keys.help=false;
+        }
+        if (keys.up) {
             if(this.direction == FACING_TO_UP && this.y > 0){
                 this.y -= this.speed;
             }else{

@@ -1,8 +1,9 @@
 /**************************************************
 ** GAME KEYBOARD CLASS
 **************************************************/
-var Keys = function(up, left, right, down, space, enter) {
+var Keys = function(up, left, right, down, space, enter,help) {
 	var up = up || false,
+		help = help || false,
 		left = left || false,
 		right = right || false,
 		down = down || false;
@@ -16,7 +17,7 @@ var Keys = function(up, left, right, down, space, enter) {
 
 		var that = this,
 			c = e.keyCode;
-
+			// alert(c);
 		switch (c) {
 			// Controls
 			case 37: // Left
@@ -36,6 +37,9 @@ var Keys = function(up, left, right, down, space, enter) {
 				break;
 			case 13: // enter
 				that.enter = true;
+				break;
+			case 72: // help
+				that.help = true;
 				break;
 		};
 	};
@@ -62,6 +66,9 @@ var Keys = function(up, left, right, down, space, enter) {
 				break;
 			case 13: // enter
 				that.enter = true;
+				break;
+			case 72: // help
+				that.help = true;
 				break;
 		};
 	};
@@ -99,6 +106,7 @@ var Keys = function(up, left, right, down, space, enter) {
 		down: down,
 		space: space,
 		enter: enter,
+		help: help,
 		onKeyDown: onKeyDown,
 		onKeyUp: onKeyUp
 	};
