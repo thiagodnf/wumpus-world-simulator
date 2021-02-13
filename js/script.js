@@ -146,6 +146,7 @@ function loadLanguage(){
 	$("#label-congratulations").html("Congratulations".toLocaleString());
 	$("#label-controls").html("Controls".toLocaleString());
 	$("#label-about").html("About".toLocaleString());
+	$("#label-Link").html("Link".toLocaleString());
 
 
 }

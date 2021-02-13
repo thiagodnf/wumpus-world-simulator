@@ -26,5 +26,20 @@ String.toLocaleString({
 		"Game Over": "Você perdeu",
 		"Congratulations": "Parabéns",
 		"Share this Map":"Compartilhe esse mapa"
+	},
+	"fr-IR": {
+		"Breeze": "نسیم",
+		"Stench": "بوی تعفن",
+		"Score:": ":امتیاز",
+		"Arrow:": ":تیر",
+		"Remaining Golds:": ":طلا مانده",
+		"Controls": "کنترل",
+		"Close": "بستن",
+		"Restart": "شروع مجدد",
+		"About": "درباره ما",
+		"Game Over": "باختید",
+		"Congratulations": "خجسته باد پیروز شدید",
+		"Share this Map":"همرسانی",
+		"Link":"بند"
 	}
 });
