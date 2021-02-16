@@ -70,6 +70,7 @@ var Player = function(env, x, y) {
     
         if(keys.help){
             // alert("pol");
+            pol_help=true;
             keys.help=false;
             $("#game-help").modal("show");
         }
