@@ -69,8 +69,9 @@ var Player = function(env, x, y) {
 		// Up key takes priority over down
     
         if(keys.help){
-            alert("pol");
+            // alert("pol");
             keys.help=false;
+            $("#game-help").modal("show");
         }
         if (keys.up) {
             if(this.direction == FACING_TO_UP && this.y > 0){
