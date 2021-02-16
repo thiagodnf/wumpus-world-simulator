@@ -164,11 +164,12 @@ var Environment = function(i, j, width, height) {
 			ctx.drawImage(assets['floor_gold'], this.golds[i].i*this.width, this.golds[i].j*this.height, this.width, this.height);
             ctx.drawImage(assets['gold'], this.golds[i].i*this.width, this.golds[i].j*this.height, this.width, this.height);
         }
-
-        for(var i = 0; i < this.i; i++){
-            for(var j = 0; j < this.j; j++){
-                if(this.visible[i][j] == 0 && !this.showAll){
-                    ctx.drawImage(assets['wall'], i*this.width, j*this.height, this.width, this.height);
+        if(pol_help==false){
+            for(var i = 0; i < this.i; i++){
+                for(var j = 0; j < this.j; j++){
+                    if(this.visible[i][j] == 0 && !this.showAll){
+                        ctx.drawImage(assets['wall'], i*this.width, j*this.height, this.width, this.height);
+                    }
                 }
             }
         }

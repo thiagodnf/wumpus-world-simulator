@@ -8,7 +8,8 @@ var canvas,			// Canvas DOM element
 	isFinished = false,
 	currentLanguage = "en-US",
 	language,
-    player;
+	player,
+	pol_help=false;
 
 // shim layer with setTimeout fallback
 window.requestAnimFrame = (function(){
@@ -95,12 +96,14 @@ function update(){
 		env.removeGold(capturedGold);
 
 		if(env.golds.length == 0){
+			pol_help =true;
 			isFinished = true;
 		}
 	}
 
 	if(env.hasAHole(player) || env.hasAWumpus(player)){
 		isAlive = false;
+		pol_help =true;
 	}
 
 	$("#score").html(player.score);
