@@ -4,26 +4,24 @@
 	"description": "An early computer game, based on a simple hide and seek format featuring a mysterious monster (the Wumpus) that lurks deep inside a network of rooms.",
 	"main": "app.js",
 	"scripts": {
-		"start": "node app.js"
+		"start": "node app.js",
+		"dev": "nodemon app.js"
 	},
-	"engines": {
-		"node": ">=0.10.0"
-	},
-	"files": [
-		"app.js"
-	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thiagodnf/wumpus-world-simulator"
 	},
-	"author": "Thiago Nascimento",
+	"author": "Thiago Ferreira",
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/thiagodnf/wumpus-world-simulator/issues"
 	},
 	"homepage": "http://thiagodnf.github.io/wumpus-world-simulator",
+	"devDependencies": {
+		"nodemon": "^2.0.7"
+	},
 	"dependencies": {
-		"serve-static": "",
-		"connect": ""
-  	}
+		"serve-static": "^1.14.1",
+		"connect": "^3.7.0"
+	}
 }
