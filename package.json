@@ -21,7 +21,7 @@
 		"nodemon": "^2.0.7"
 	},
 	"dependencies": {
-		"serve-static": "^1.14.1",
-		"connect": "^3.7.0"
+		"connect": "^3.7.0",
+		"serve-static": "^1.14.1"
 	}
 }
