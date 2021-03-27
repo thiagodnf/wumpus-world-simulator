@@ -60,7 +60,7 @@
 			</ul>
 			<form class="form-inline">
 				<div class="form-group">
-					<select class="form-control" data-validation="required" id="select-language">
+					<select class="form-control" data-validation="required" id="select-language" tabindex="-1">
 						<option value="en_us" data-icon="flag-icon flag-icon-us" data-i18n="en_us">en_us</option>
 						<option value="pt_br" data-icon="flag-icon flag-icon-br" data-i18n="pt_br">pt_br</option>
 					</select>
@@ -69,30 +69,46 @@
 		</div><!--/.nav-collapse -->
     </nav>
 
-    <div class="container">
-        <div class="card center-block">
-			<div class="card-content">
-				<canvas id="canvas" width="480" height="480" data-i18n="no-canvas-support"></canvas>
-			</div>
-			<div class="card-footer">
-				<div class="row">
-					<div class="col-sm-9">
-						<img src="img/score-icon.png" width="16px"/>
-						<span data-i18n="score">Score</span>:
-						<span id="score">0</span>
-						<img src="img/arrow-icon.png" width="16px"/>
-						<span data-i18n="arrow">Arrow</span>:
-						<span id="arrow">0</span>
-						<img src="img/gold-icon.png" width="16px"/>
-						<span data-i18n="remaining-golds">Remaining Golds</span>:
-						<span id="gold">0</span>
-					</div>
-					<div class="col-sm-3 text-right">
-						<button data-toggle="modal" data-target="#modal-share" class="btn btn-success" data-i18n="share">Share</button>
-					</div>
-				</div>
-			</div>
-		</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-9">
+                <div class="card card-game">
+                    <div class="card-content">
+                        <canvas id="canvas" width="480" height="480" data-i18n="no-canvas-support"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card card-body">
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="nav-item" >
+                            <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info">Info</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active mt-4" id="info">
+                            <p>
+                                <img src="img/score-icon.png" width="16px"/>
+                                <span data-i18n="score">Score</span>:
+                                <span id="score">0</span>
+                            </p>
+                            <p>
+                                <img src="img/arrow-icon.png" width="16px"/>
+                                <span data-i18n="arrow">Arrow</span>:
+                                <span id="arrow">0</span>
+                            </p>
+                            <p>
+                                <img src="img/gold-icon.png" width="16px"/>
+                                <span data-i18n="remaining-golds">Remaining Golds</span>:
+                                <span id="gold">0</span>
+                            </p>
+                            <hr/>
+                            <button data-toggle="modal" data-target="#modal-share" class="btn btn-success" data-i18n="share">Share</button>
+                        </div>
+                    </div>
+                </div> <!-- sidebar -->
+            </div>
+        </div>
     </div>
 
     <div class="modal" tabindex="-1" id="modal-game-over">
@@ -183,8 +199,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.7/jquery.i18n.parser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.7/jquery.i18n.emitter.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.7/jquery.i18n.emitter.bidi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
 
     <!-- Application -->
+    <script src="js/core/audio.js"></script>
     <script src="js/core/resources.js"></script>
     <script src="js/core/environment.js"></script>
     <script src="js/core/keys.js"></script>

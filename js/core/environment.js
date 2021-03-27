@@ -30,7 +30,7 @@ var Environment = function(i, j, width, height) {
 	this.randomInitialization = function(){
         this.visible = this.getMatrix(this.i, this.j);
         this.visible[0][0] = 1;
-        
+
 		this.golds = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
 		this.holes = this.generateRandomItens(Math.floor(this.i*this.j/16*2));
 		this.wumpus = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
@@ -138,37 +138,41 @@ var Environment = function(i, j, width, height) {
     };
 
     this.draw = function(ctx) {
+
+        const breeze = $.i18n("breeze");
+        const stench = $.i18n("stench");
+
         for(var i = 0; i < this.i; i++){
             for(var j = 0; j < this.j; j++){
-                ctx.drawImage(assets['floor'], i*this.width, j*this.height, this.width, this.height);
+                ctx.drawImage(resources.images['floor'], i*this.width, j*this.height, this.width, this.height);
             }
         }
 
         for(var i = 0; i < this.holes.length; i++){
-            ctx.drawImage(assets['hole'], this.holes[i].i*this.width, this.holes[i].j*this.height, this.width, this.height);
-            this.drawText(ctx, "Breeze".toLocaleString(), this.holes[i].i, this.holes[i].j+1, 3);
-            this.drawText(ctx, "Breeze".toLocaleString(), this.holes[i].i, this.holes[i].j-1, 3);
-            this.drawText(ctx, "Breeze".toLocaleString(), this.holes[i].i+1, this.holes[i].j, 3);
-            this.drawText(ctx, "Breeze".toLocaleString(), this.holes[i].i-1, this.holes[i].j, 3);
+            ctx.drawImage(resources.images['hole'], this.holes[i].i*this.width, this.holes[i].j*this.height, this.width, this.height);
+            this.drawText(ctx, breeze, this.holes[i].i, this.holes[i].j+1, 3);
+            this.drawText(ctx, breeze, this.holes[i].i, this.holes[i].j-1, 3);
+            this.drawText(ctx, breeze, this.holes[i].i+1, this.holes[i].j, 3);
+            this.drawText(ctx, breeze, this.holes[i].i-1, this.holes[i].j, 3);
         }
 
         for(var i = 0; i < this.wumpus.length; i++){
-            ctx.drawImage(assets['wumpus'], this.wumpus[i].i*this.width, this.wumpus[i].j*this.height, this.width, this.height);
-            this.drawText(ctx, "Stench".toLocaleString(), this.wumpus[i].i, this.wumpus[i].j+1, 14);
-            this.drawText(ctx, "Stench".toLocaleString(), this.wumpus[i].i, this.wumpus[i].j-1, 14);
-            this.drawText(ctx, "Stench".toLocaleString(), this.wumpus[i].i+1, this.wumpus[i].j, 14);
-            this.drawText(ctx, "Stench".toLocaleString(), this.wumpus[i].i-1, this.wumpus[i].j, 14);
+            ctx.drawImage(resources.images['wumpus'], this.wumpus[i].i*this.width, this.wumpus[i].j*this.height, this.width, this.height);
+            this.drawText(ctx, stench, this.wumpus[i].i, this.wumpus[i].j+1, 14);
+            this.drawText(ctx, stench, this.wumpus[i].i, this.wumpus[i].j-1, 14);
+            this.drawText(ctx, stench, this.wumpus[i].i+1, this.wumpus[i].j, 14);
+            this.drawText(ctx, stench, this.wumpus[i].i-1, this.wumpus[i].j, 14);
         }
 
         for(var i = 0; i < this.golds.length; i++){
-			ctx.drawImage(assets['floor_gold'], this.golds[i].i*this.width, this.golds[i].j*this.height, this.width, this.height);
-            ctx.drawImage(assets['gold'], this.golds[i].i*this.width, this.golds[i].j*this.height, this.width, this.height);
+			ctx.drawImage(resources.images['floor_gold'], this.golds[i].i*this.width, this.golds[i].j*this.height, this.width, this.height);
+            ctx.drawImage(resources.images['gold'], this.golds[i].i*this.width, this.golds[i].j*this.height, this.width, this.height);
         }
 
         for(var i = 0; i < this.i; i++){
             for(var j = 0; j < this.j; j++){
                 if(this.visible[i][j] == 0 && !this.showAll){
-                    ctx.drawImage(assets['wall'], i*this.width, j*this.height, this.width, this.height);
+                    ctx.drawImage(resources.images['wall'], i*this.width, j*this.height, this.width, this.height);
                 }
             }
         }

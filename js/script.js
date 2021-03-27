@@ -2,7 +2,6 @@
 var canvas,			// Canvas DOM element
 	ctx,
     keys,
-	assets,
 	env,
 	isAlive = true,
 	isFinished = false,
@@ -10,27 +9,13 @@ var canvas,			// Canvas DOM element
 	language,
     player;
 
-// shim layer with setTimeout fallback
-window.requestAnimFrame = (function(){
-  return  window.requestAnimationFrame       ||
-          window.webkitRequestAnimationFrame ||
-          window.mozRequestAnimationFrame    ||
-          window.oRequestAnimationFrame      ||
-          window.msRequestAnimationFrame     ||
-          function(/* function */ callback, /* DOMElement */ element){
-            window.setTimeout(callback, 1000 / 60);
-          };
-})();
-
 function init(){
 
     console.log("Welcome to Wumpus World Simulator");
 
-	// Declare the canvas and rendering context
+    // Declare the canvas and rendering context
 	canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
-
-	assets = [];
 
 	language = [];
 
@@ -77,25 +62,29 @@ function onKeyup(e) {
 };
 
 function update(){
-	if(player.update(keys)){
+
+	if (player.update(keys)) {
 		player.score -= 10;
 	}
 
 	var deadWumpus = player.kill(keys);
 
-	if(deadWumpus){
+	if (deadWumpus) {
 		player.score += 1000;
-		env.removeWumpus(deadWumpus);
+        env.removeWumpus(deadWumpus);
 	}
 
 	var capturedGold = player.capture(keys);
 
-	if(capturedGold){
-		player.score += 1000;
+	if (capturedGold) {
+
+        player.score += 1000;
 
 		env.removeGold(capturedGold);
 
-		if(env.golds.length == 0){
+        resources.play("gold");
+
+		if (env.golds.length == 0){
 			isFinished = true;
 		}
 	}
@@ -110,9 +99,13 @@ function update(){
 
 	if(!isAlive){
 		$("#modal-game-over").modal("show");
+        resources.play("game-over");
+        resources.stop("theme");
 	}
 	if(isFinished){
 		$("#modal-win").modal("show");
+        resources.play("win");
+        resources.stop("theme");
 	}
 }
 
@@ -128,9 +121,6 @@ function draw(){
 function animate(){
     update();
 	draw();
-
-	// Request a new animation frame using Paul Irish's shim
-	//window.requestAnimFrame(animate);
 }
 
 function getURL(){
@@ -152,7 +142,8 @@ function getLink(){
 }
 
 function loadEnvironment(hash){
-	var link = atob(hash.replace('#', ''));
+
+    var link = atob(hash.replace('#', ''));
 
 	var obj = $.parseJSON(link);
 
@@ -179,6 +170,8 @@ function changeLanguageTo(locale){
     $('#select-language').selectpicker('refresh');
     // Save the current locate on the locale storage to reload
     localStorage.setItem("wws-locale", locale);
+    // We need to redraw the canvas as well
+    draw();
 }
 
 $(function(){
@@ -213,43 +206,23 @@ $(function(){
 		location.reload();
 	});
 
-	$(".card").width(canvas.width);
-	$(".card-content").height(canvas.height);
+	$(".card-game").width(canvas.width);
+	$(".card-game .card-content").height(canvas.height);
 
 	$('#modal-share').on('shown.bs.modal', function () {
 		$('#textarea-link').text(getLink());
 	});
 
-	assets['facing_to_up'] = 'img/player_facing_to_up.png';
-	assets['facing_to_down'] = 'img/player_facing_to_down.png';
-	assets['facing_to_left'] = 'img/player_facing_to_left.png';
-	assets['facing_to_right'] = 'img/player_facing_to_right.png';
-	assets['wall'] = 'img/wall.png';
-	assets['floor'] = 'img/floor.png';
-	assets['hole'] = 'img/hole.png';
-	assets['wumpus'] = 'img/wumpus.png';
-	assets['gold'] = 'img/gold.png';
-	assets['floor_gold'] = 'img/floor_gold.png';
+    resources.load().then(() =>{
 
-	var res = [];
+        resources.play("theme");
 
-	for(key in assets){
-		res.push(assets[key]);
-	}
+        var hash = window.location.hash;
 
-	resources.load(res);
-
-	resources.onReady(function(){
-		for(key in assets){
-			assets[key] = resources.get(assets[key]);
-		}
-
-		var hash = window.location.hash;
-
-		if(hash != null && hash != ""){
+		if (hash) {
 			loadEnvironment(hash);
 		}
 
 		animate();
-	});
+    })
 });

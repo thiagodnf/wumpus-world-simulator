@@ -22,10 +22,12 @@ var Player = function(env, x, y) {
     }
 
     this.kill = function(keys) {
+
         var deadWumpus = null;
 
         if (keys.space) {
-			if(this.arrow == 0){
+
+			if (this.arrow == 0) {
 				return false;
 			}
 
@@ -41,9 +43,15 @@ var Player = function(env, x, y) {
             if(this.direction == FACING_TO_RIGHT) pos = {i:this.getPosI()+1, j:this.getPosJ()};
 
             deadWumpus = this.env.get(this.env.wumpus, pos.i, pos.j);
+
+            if (deadWumpus) {
+                resources.play("arrow");
+            }else{
+                resources.play("error");
+            }
         }
 
-        return (deadWumpus)? deadWumpus: false;
+        return deadWumpus;
     };
 
     this.capture = function(keys) {
@@ -70,24 +78,28 @@ var Player = function(env, x, y) {
 		if (keys.up) {
             if(this.direction == FACING_TO_UP && this.y > 0){
                 this.y -= this.speed;
+                resources.play("move");
             }else{
                 this.direction = FACING_TO_UP;
             }
 		} else if (keys.down) {
             if(this.direction == FACING_TO_DOWN && this.y+this.speed < this.env.j*this.env.height){
       		    this.y += this.speed;
+                  resources.play("move");
             }else{
                 this.direction = FACING_TO_DOWN;
             }
 		} else if (keys.left) {
             if(this.direction == FACING_TO_LEFT && this.x > 0){
       		    this.x -= this.speed;
+                  resources.play("move");
             }else{
                 this.direction = FACING_TO_LEFT;
             }
 		} else if (keys.right) {
             if(this.direction == FACING_TO_RIGHT && this.x+this.speed < this.env.i*this.env.width){
                 this.x += this.speed;
+                resources.play("move");
             }else{
                 this.direction = FACING_TO_RIGHT;
             }
@@ -114,13 +126,13 @@ var Player = function(env, x, y) {
 
 	this.draw = function(ctx) {
         if(this.direction == FACING_TO_DOWN){
-            ctx.drawImage(assets['facing_to_down'], this.x, this.y, this.env.width, this.env.height);
+            ctx.drawImage(resources.images['facing_to_down'], this.x, this.y, this.env.width, this.env.height);
         }else if(this.direction == FACING_TO_UP){
-            ctx.drawImage(assets['facing_to_up'], this.x, this.y, this.env.width, this.env.height);
+            ctx.drawImage(resources.images['facing_to_up'], this.x, this.y, this.env.width, this.env.height);
         }else if(this.direction == FACING_TO_LEFT){
-            ctx.drawImage(assets['facing_to_left'], this.x, this.y, this.env.width, this.env.height);
+            ctx.drawImage(resources.images['facing_to_left'], this.x, this.y, this.env.width, this.env.height);
         }else if(this.direction == FACING_TO_RIGHT){
-            ctx.drawImage(assets['facing_to_right'], this.x, this.y, this.env.width, this.env.height);
+            ctx.drawImage(resources.images['facing_to_right'], this.x, this.y, this.env.width, this.env.height);
         }
 	};
 };
