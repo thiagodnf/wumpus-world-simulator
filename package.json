@@ -1,7 +1,7 @@
 {
 	"name": "wumpus-world-simulator",
 	"version": "1.0.0",
-	"description": "An early computer game, based on a simple hide and seek format featuring a mysterious monster (the Wumpus) that lurks deep inside a network of rooms.",
+	"description": "A Wumpus World Simulator developed in Javascript, HTML and CSS",
 	"main": "app.js",
 	"scripts": {
 		"start": "node app.js",
