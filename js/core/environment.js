@@ -8,7 +8,7 @@ var Environment = function(i, j, width, height) {
   	this.j = j;
     this.width = width;
     this.height = height;
-    this.showAll = false;
+    this.removeWalls = false;
     this.visible = null;
     this.holes = [];
     this.wumpus = [];
@@ -171,7 +171,7 @@ var Environment = function(i, j, width, height) {
 
         for(var i = 0; i < this.i; i++){
             for(var j = 0; j < this.j; j++){
-                if(this.visible[i][j] == 0 && !this.showAll){
+                if(this.visible[i][j] == 0 && !this.removeWalls){
                     ctx.drawImage(resources.images['wall'], i*this.width, j*this.height, this.width, this.height);
                 }
             }

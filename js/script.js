@@ -202,6 +202,11 @@ $(function(){
         changeLanguageTo($(this).val());
 	});
 
+    $('#btn-remove-walls').change(function() {
+        env.removeWalls = this.checked;
+        draw();
+    });
+
     $(".btn-restart").click(function(){
 		location.reload();
 	});

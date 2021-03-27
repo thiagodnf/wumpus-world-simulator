@@ -82,7 +82,10 @@
                 <div class="card card-body">
                     <ul class="nav nav-tabs" id="myTab">
                         <li class="nav-item" >
-                            <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info">Info</a>
+                            <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" data-i18n="info">Info</a>
+                        </li>
+                        <li class="nav-item" >
+                            <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" data-i18n="settings">Settings</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -104,6 +107,14 @@
                             </p>
                             <hr/>
                             <button data-toggle="modal" data-target="#modal-share" class="btn btn-success" data-i18n="share">Share</button>
+                        </div>
+                        <div class="tab-pane fade mt-4" id="settings">
+                            <form>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true" id="btn-remove-walls">
+                                    <label class="form-check-label" for="btn-remove-walls" data-i18n="settings-remove-walls">Remove Walls</label>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div> <!-- sidebar -->

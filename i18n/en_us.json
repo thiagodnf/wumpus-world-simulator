@@ -17,6 +17,9 @@
     "game-over": "Game Over",
     "congratulations": "Congratulations",
     "share": "Share",
+    "settings": "Settings",
+    "info": "Info",
+    "settings-remove-walls": "Remove Walls",
     "no-canvas-support": "Sorry, browser does not support canvas",
     "en_us": "English (United States)",
     "pt_br": "Portuguese (Brazil)"
