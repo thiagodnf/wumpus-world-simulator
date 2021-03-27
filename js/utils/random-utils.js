@@ -1,5 +1,25 @@
 class RandomUtils {
 
+    static shuffle(array) {
+
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+
     /**
      * @param {number} min
      * @param {number} max
@@ -17,34 +37,35 @@ class RandomUtils {
         return array[RandomUtils.getRandomIndex(array)];
     }
 
-    /**
-     * @param {array} array should not be null
-     * @param {number} numberOfItems should be greater or equals to 1 and less or equals to array.length
-     * @returns a random set from array
-     */
-    static getRandomElements(array, numberOfItems) {
+    static getRandomElements(array, numberOfElements) {
 
-        if (numberOfItems < 1) {
-            throw new Error("numberOfItems should not be less than 1");
-        }
+        let indexes = ArrayUtils.getIndexesFromSize(array.length);
 
-        if (numberOfItems > array.length) {
-            throw new Error("numberOfItems should not be greater than 'array.length'");
-        }
+        RandomUtils.shuffle(indexes);
 
-        let indexes = ArrayUtils.getIndexes(array);
+        let selected = indexes.filter((e,i) => i < numberOfElements);
 
-        let selected = [];
+        return selected.map(el => array[el]);
+    }
 
-        for (let i = 0; i < numberOfItems; i++) {
+    static getRandomLevel(lines, columns) {
 
-            let index = RandomUtils.getRandomElement(indexes);
+        let positions = ArrayUtils.getIndexes(lines, columns);
 
-            selected.push(array[index]);
+        positions = ArrayUtils.removeByValues(positions, [[0, 0]]);
+        positions = ArrayUtils.removeByValues(positions, [[0, 1]]);
+        positions = ArrayUtils.removeByValues(positions, [[1, 0]]);
+        positions = ArrayUtils.removeByValues(positions, [[1, 1]]);
 
-            ArrayUtils.removeByValue(indexes, index);
-        }
+        let holes = RandomUtils.getRandomElements(positions, 10);
+        positions = ArrayUtils.removeByValues(positions, holes);
 
-        return selected;
+        let wumpus = RandomUtils.getRandomElements(positions, 8);
+        positions = ArrayUtils.removeByValues(positions, wumpus);
+
+        let golds = RandomUtils.getRandomElements(positions, 8);
+        positions = ArrayUtils.removeByValues(positions, golds);
+
+        return { holes, wumpus, golds };
     }
 }

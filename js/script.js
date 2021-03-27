@@ -34,11 +34,6 @@ function restart(){
 	isFinished = false,
 
     animate();
-
-    for(let i=0;i<10;i++){
-        console.log(RandomUtils.getRandomElements([[3,2], [4,2], [5,2], [6,2]], 2));
-        // console.log(RandomUtils.getRandomElements(["a", "b", "c", "d"]))
-    }
 }
 
 function setEventHandlers(){
@@ -124,12 +119,17 @@ function displayCongratulations(){
 }
 
 function draw(){
-	// Wipe the canvas clean
+
+    // Wipe the canvas clean
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	env.draw(ctx);
+    if (env) {
+	    env.draw(ctx);
+    }
 
-	player.draw(ctx);
+    if (player) {
+	    player.draw(ctx);
+    }
 }
 
 function animate(){

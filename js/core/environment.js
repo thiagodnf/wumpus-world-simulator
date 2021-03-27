@@ -14,103 +14,36 @@ var Environment = function(i, j, width, height) {
     this.wumpus = [];
     this.golds = [];
 
-    this.copy = {
-        holes: [],
-        wumpus: [],
-        golds: [],
-        visible: []
-    };
+    this.level = {};
 
     this.restart = function(){
 
-        this.visible = this.copyMatrix(this.copy.visible);
+        this.visible = this.getMatrix(this.i, this.j);
+
         this.visible[0][0] = 1;
 
-        this.golds = this.copyArrayWithObjects(this.copy.golds);
-		this.holes = this.copyArrayWithObjects(this.copy.holes);
-		this.wumpus = this.copyArrayWithObjects(this.copy.wumpus);
+        this.golds = ArrayUtils.copy(this.level.golds);
+		this.holes = ArrayUtils.copy(this.level.holes);
+		this.wumpus = ArrayUtils.copy(this.level.wumpus);
     };
 
 	this.randomInitialization = function(){
 
-        this.copy.visible = this.getMatrix(this.i, this.j);
-        this.copy.golds = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
-		this.copy.holes = this.generateRandomItens(Math.floor(this.i*this.j/16*2));
-		this.copy.wumpus = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
+        this.level = RandomUtils.getRandomLevel(this.i, this.j);
 
         this.restart();
     };
 
-    this.copyMatrix = function(array){
-
-        let copy = [];
-
-        array.forEach(e => {
-            copy.push([...e]);
-        })
-
-        return copy;
-    }
-
-    this.copyArrayWithObjects = function(array){
-
-        let copy = [];
-
-        array.forEach(e => {
-            copy.push(Object.assign({}, e));
-        })
-
-        return copy;
-    }
-
-	this.generateRandomItens = function(max){
-		
-        var items = [];
-
-		while(items.length < max){
-
-			var i = RandomUtils.getRandomInteger(0, this.i - 1);
-			var j = RandomUtils.getRandomInteger(0, this.j - 1);
-
-			if(this.validPosition(i, j)){
-				if( ! this.contains(items, i, j)){
-					if( ! this.contains(this.copy.golds, i, j)){
-						if( ! this.contains(this.copy.holes, i, j)){
-							if( ! this.contains(this.copy.wumpus, i, j)){
-								items.push({i:i, j:j});
-							}
-						}
-					}
-				}
-			}
-		}
-
-		return items;
-	}
-
-	this.validPosition = function(i, j){
-		var invalidPos = [
-			{i:0, j:0},
-			{i:0, j:1},
-			{i:1, j:0},
-			{i:1, j:1}
-		];
-
-		for(var ind = 0; ind < invalidPos.length; ind++){
-			if(invalidPos[ind].i == i && invalidPos[ind].j == j){
-				return false;
-			}
-		}
-
-		return true;
-	}
-
     this.getMatrix = function(maxI, maxJ, initialValue){
+
         var initialValue = initialValue || 0;
+
         var matrix = new Array(maxI);
 
-        for(var i = 0; i < maxI; i++){
+        for (var i = 0; i < maxI; i++) {
+
             matrix[i] = new Array(maxJ);
+
             for(var j = 0; j < maxJ; j++){
                 matrix[i][j] = initialValue;
             }
@@ -120,12 +53,14 @@ var Environment = function(i, j, width, height) {
     };
 
     this.removeWumpus = function(deadWumpus){
-        this.visible[deadWumpus.i][deadWumpus.j] = 1
-        this.wumpus.splice(this.wumpus.indexOf(deadWumpus), 1);
+
+        this.visible[deadWumpus[0]][deadWumpus[1]] = 1
+
+        this.wumpus = ArrayUtils.removeByValues(this.wumpus, [deadWumpus]);
     };
 
     this.removeGold = function(gold){
-        this.golds.splice(this.golds.indexOf(gold), 1);
+        this.golds = ArrayUtils.removeByValues(this.golds, [gold]);
     };
 
     this.contains = function(array, i, j){
@@ -133,18 +68,16 @@ var Environment = function(i, j, width, height) {
     }
 
     this.get = function(array, i, j){
-        for(var ind = 0; ind < array.length; ind++){
-            if(array[ind].i == i && array[ind].j == j){
-                return array[ind];
-            }
-        }
-
-        return false;
+        return ArrayUtils.search(array, [i, j]);
     }
 
     this.hasAWumpus = function(player){
-        for(var i = 0; i < this.wumpus.length; i++){
-            if(this.wumpus[i].i == player.getPosI() && this.wumpus[i].j == player.getPosJ()){
+
+        for (let i = 0; i < this.wumpus.length; i++) {
+
+            const wumpu = this.wumpus[i];
+
+            if (wumpu[0] == player.getPosI() && wumpu[1] == player.getPosJ()) {
                 return true;
             }
         }
@@ -153,8 +86,12 @@ var Environment = function(i, j, width, height) {
     };
 
     this.hasAHole = function(player){
-        for(var i = 0; i < this.holes.length; i++){
-            if(this.holes[i].i == player.getPosI() && this.holes[i].j == player.getPosJ()){
+
+        for (let i = 0; i < this.holes.length; i++) {
+
+            const hole = this.holes[i];
+
+            if (hole[0] == player.getPosI() && hole[1] == player.getPosJ()) {
                 return true;
             }
         }
@@ -173,25 +110,36 @@ var Environment = function(i, j, width, height) {
             }
         }
 
-        for(var i = 0; i < this.holes.length; i++){
-            ctx.drawImage(resources.images['hole'], this.holes[i].i*this.width, this.holes[i].j*this.height, this.width, this.height);
-            this.drawText(ctx, breeze, this.holes[i].i, this.holes[i].j+1, 3);
-            this.drawText(ctx, breeze, this.holes[i].i, this.holes[i].j-1, 3);
-            this.drawText(ctx, breeze, this.holes[i].i+1, this.holes[i].j, 3);
-            this.drawText(ctx, breeze, this.holes[i].i-1, this.holes[i].j, 3);
+        for (let i = 0; i < this.holes.length; i++) {
+
+            const hole = this.holes[i];
+
+            ctx.drawImage(resources.images['hole'], hole[0]*this.width, hole[1]*this.height, this.width, this.height);
+
+            this.drawText(ctx, breeze, hole[0], hole[1] + 1, 3);
+            this.drawText(ctx, breeze, hole[0], hole[1] - 1, 3);
+            this.drawText(ctx, breeze, hole[0] + 1, hole[1], 3);
+            this.drawText(ctx, breeze, hole[0] - 1, hole[1], 3);
         }
 
-        for(var i = 0; i < this.wumpus.length; i++){
-            ctx.drawImage(resources.images['wumpus'], this.wumpus[i].i*this.width, this.wumpus[i].j*this.height, this.width, this.height);
-            this.drawText(ctx, stench, this.wumpus[i].i, this.wumpus[i].j+1, 14);
-            this.drawText(ctx, stench, this.wumpus[i].i, this.wumpus[i].j-1, 14);
-            this.drawText(ctx, stench, this.wumpus[i].i+1, this.wumpus[i].j, 14);
-            this.drawText(ctx, stench, this.wumpus[i].i-1, this.wumpus[i].j, 14);
+        for (let i = 0; i < this.wumpus.length; i++) {
+
+            const wumpu = this.wumpus[i];
+
+            ctx.drawImage(resources.images['wumpus'], wumpu[0]*this.width, wumpu[1]*this.height, this.width, this.height);
+
+            this.drawText(ctx, stench, wumpu[0], wumpu[1]+1, 14);
+            this.drawText(ctx, stench, wumpu[0], wumpu[1]-1, 14);
+            this.drawText(ctx, stench, wumpu[0]+1, wumpu[1], 14);
+            this.drawText(ctx, stench, wumpu[0]-1, wumpu[1], 14);
         }
 
-        for(var i = 0; i < this.golds.length; i++){
-			ctx.drawImage(resources.images['floor_gold'], this.golds[i].i*this.width, this.golds[i].j*this.height, this.width, this.height);
-            ctx.drawImage(resources.images['gold'], this.golds[i].i*this.width, this.golds[i].j*this.height, this.width, this.height);
+        for (let i = 0; i < this.golds.length; i++) {
+
+            const gold = this.golds[i];
+
+			ctx.drawImage(resources.images['floor_gold'], gold[0]*this.width, gold[1]*this.height, this.width, this.height);
+            ctx.drawImage(resources.images['gold'], gold[0]*this.width, gold[1]*this.height, this.width, this.height);
         }
 
         for(var i = 0; i < this.i; i++){
@@ -203,19 +151,16 @@ var Environment = function(i, j, width, height) {
         }
 
         // Draw horizontal lines
-        for(var i = 1; i < this.i; i++){
+        for (let i = 1; i < this.i; i++) {
             this.drawLine(ctx, i*this.width, 0, i*this.height, this.j*this.width);
         }
         // Draw vertical lines
-        for(var j = 1; j < this.j; j++){
+        for (let j = 1; j < this.j; j++) {
             this.drawLine(ctx, 0, j*this.height, this.i*this.width, j*this.height);
         }
 	};
 
     this.drawText = function(ctx, text, i, j, offset){
-        if(this.contains(this.holes, i, j) || this.contains(this.wumpus, i, j) || this.contains(this.golds, i, j)){
-            return;
-        }
         ctx.font="12px Verdana";
         ctx.fillStyle = 'white';
         ctx.textBaseline = "hanging";

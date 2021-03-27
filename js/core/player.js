@@ -15,7 +15,7 @@ var Player = function(env, x, y) {
     this.speed = this.env.height;
     this.direction = FACING_TO_DOWN;
     this.score = 0;
-    this.arrow = Math.floor(this.env.i*this.env.j/16*1);
+    this.arrow = 10;
 
     this.markAsVisible = function(){
         this.env.visible[this.getPosI()][this.getPosJ()] = 1;
@@ -55,12 +55,13 @@ var Player = function(env, x, y) {
     };
 
     this.capture = function(keys) {
+
         var capturedGold = null;
 
         if (keys.enter) {
+
             keys.enter = false;
 
-            var pos = null;
 
             capturedGold = this.env.get(this.env.golds, this.getPosI(), this.getPosJ());
         }
