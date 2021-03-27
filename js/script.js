@@ -23,7 +23,8 @@ window.requestAnimFrame = (function(){
 })();
 
 function init(){
-	console.log("Welcome to Wumpus World Simulator");
+
+    console.log("Welcome to Wumpus World Simulator");
 
 	// Declare the canvas and rendering context
 	canvas = document.getElementById("canvas");
@@ -108,10 +109,10 @@ function update(){
 	$("#gold").html(env.golds.length);
 
 	if(!isAlive){
-		$("#game-over").modal("show");
+		$("#modal-game-over").modal("show");
 	}
 	if(isFinished){
-		$("#finished").modal("show");
+		$("#modal-win").modal("show");
 	}
 }
 
@@ -130,24 +131,6 @@ function animate(){
 
 	// Request a new animation frame using Paul Irish's shim
 	//window.requestAnimFrame(animate);
-}
-
-function loadLanguage(){
-	$("#btn-controls").html("Controls".toLocaleString());
-	$("#btn-about").html("About".toLocaleString());
-	$("#score-label").html("Score:".toLocaleString());
-	$("#arrow-label").html("Arrow:".toLocaleString());
-	$("#gold-label").html("Remaining Golds:".toLocaleString());
-	$("#share-this-map").html("Share this Map".toLocaleString());
-	$("#modal-share-this-map-title").html("Share this Map".toLocaleString());
-	$(".btn-restart").html("Restart".toLocaleString());
-	$(".btn-close").html("Close".toLocaleString());
-	$("#label-game-over").html("Game Over".toLocaleString());
-	$("#label-congratulations").html("Congratulations".toLocaleString());
-	$("#label-controls").html("Controls".toLocaleString());
-	$("#label-about").html("About".toLocaleString());
-
-
 }
 
 function getURL(){
@@ -180,41 +163,62 @@ function loadEnvironment(hash){
 	animate();
 }
 
+function getCurrentLanguage(){
+    return localStorage.getItem("wws-locale") || 'en_us';
+}
+
+function changeLanguageTo(locale){
+
+    console.log("Changing language to", locale);
+
+    // Define the current language
+    $.i18n().locale = locale;
+    // Change all text on the webpage
+    $('body').i18n();
+    // We need to refresh the bootstrap-select
+    $('#select-language').selectpicker('refresh');
+    // Save the current locate on the locale storage to reload
+    localStorage.setItem("wws-locale", locale);
+}
+
 $(function(){
+
 	init();
 
-	$(".btn-restart").click(function(){
+    $.i18n.debug = true;
+
+    $.i18n({
+        locale: getCurrentLanguage()
+    });
+
+    $.i18n().load( {
+        en_us: 'i18n/en_us.json',
+        pt_br: 'i18n/pt_br.json'
+    }).done( function() {
+        changeLanguageTo($.i18n().locale);
+    });
+
+    $('#select-language').selectpicker({
+        dropdownAlignRight: true
+    });
+
+    $('#select-language').selectpicker('val', $.i18n().locale);
+
+	$("#select-language").change(function(event){
+        event.preventDefault();
+        changeLanguageTo($(this).val());
+	});
+
+    $(".btn-restart").click(function(){
 		location.reload();
 	});
-
-	$('#select-language').selectpicker();
-
-	$("#select-language").change(function(){
-		String.locale = $(this).val();
-		localStorage.setItem("locale", String.locale);
-		loadLanguage();
-	});
-
-	var locale = localStorage.getItem("locale");
-
-	if(locale != null){
-		String.locale = locale;
-	}else{
-		String.locale = 'en-US';
-	}
-
-	$('#select-language').selectpicker('val', String.locale);
-
-	loadLanguage();
 
 	$(".card").width(canvas.width);
 	$(".card-content").height(canvas.height);
 
-
-	$('#modal-share-this-map').on('shown.bs.modal', function () {
+	$('#modal-share').on('shown.bs.modal', function () {
 		$('#textarea-link').text(getLink());
 	});
-
 
 	assets['facing_to_up'] = 'img/player_facing_to_up.png';
 	assets['facing_to_down'] = 'img/player_facing_to_down.png';

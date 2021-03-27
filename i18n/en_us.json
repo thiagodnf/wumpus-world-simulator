@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Thiago Ferreira"
+		],
+		"locale": "en_us"
+	},
+	"breeze": "Breeze",
+    "stench": "Stench",
+    "score": "Score",
+    "arrow": "Arrow",
+    "remaining-golds": "Remaining Golds",
+    "controls": "Controls",
+    "about": "About",
+    "close": "Close",
+    "restart": "Restart",
+    "game-over": "Game Over",
+    "congratulations": "Congratulations",
+    "share": "Share",
+    "no-canvas-support": "Sorry, browser does not support canvas",
+    "en_us": "English (United States)",
+    "pt_br": "Portuguese (Brazil)"
+}
