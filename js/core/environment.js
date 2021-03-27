@@ -64,12 +64,13 @@ var Environment = function(i, j, width, height) {
     }
 
 	this.generateRandomItens = function(max){
-		var items = [];
+		
+        var items = [];
 
 		while(items.length < max){
 
-			var i = this.getRandomIntegerNumber(0, this.i-1);
-			var j = this.getRandomIntegerNumber(0, this.j-1);
+			var i = RandomUtils.getRandomInteger(0, this.i - 1);
+			var j = RandomUtils.getRandomInteger(0, this.j - 1);
 
 			if(this.validPosition(i, j)){
 				if( ! this.contains(items, i, j)){
@@ -103,10 +104,6 @@ var Environment = function(i, j, width, height) {
 
 		return true;
 	}
-
-	this.getRandomIntegerNumber = function(min, max){
-    	return Math.floor((Math.random() * (max)) + min);
-    };
 
     this.getMatrix = function(maxI, maxJ, initialValue){
         var initialValue = initialValue || 0;

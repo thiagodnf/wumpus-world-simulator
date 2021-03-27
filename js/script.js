@@ -34,6 +34,11 @@ function restart(){
 	isFinished = false,
 
     animate();
+
+    for(let i=0;i<10;i++){
+        console.log(RandomUtils.getRandomElements([[3,2], [4,2], [5,2], [6,2]], 2));
+        // console.log(RandomUtils.getRandomElements(["a", "b", "c", "d"]))
+    }
 }
 
 function setEventHandlers(){
@@ -88,9 +93,6 @@ function update(){
 			isFinished = true;
 		}
 	}
-
-    console.log("hasAHole", env.hasAHole(player));
-    console.log("hasAWumpus", env.hasAWumpus(player));
 
 	if(env.hasAHole(player) || env.hasAWumpus(player)){
 		isAlive = false;
