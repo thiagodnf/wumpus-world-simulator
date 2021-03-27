@@ -3,12 +3,18 @@ let resources = {
     images: {},
     musics: {},
 
-    play: function(name){
+    play: function(name, override = true){
 
         let sound = this.musics[name];
 
-        if (sound && !sound.playing()) {
-            sound.play();
+        if (sound){
+            if(override){
+                sound.play();
+            } else {
+                if(!sound.playing()) {
+                    sound.play();
+                }
+            }
         }
     },
 
@@ -58,8 +64,6 @@ let resources = {
 
     loadMusics: function(){
 
-        var that = this;
-
         return new Promise((resolve, reject) => {
 
             const files = [
@@ -81,8 +85,6 @@ let resources = {
 	},
 
 	loadImages: function(){
-
-        var that = this;
 
         return new Promise((resolve, reject) => {
 

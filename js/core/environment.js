@@ -9,45 +9,73 @@ var Environment = function(i, j, width, height) {
     this.width = width;
     this.height = height;
     this.removeWalls = false;
-    this.visible = null;
+    this.visible = [];
     this.holes = [];
     this.wumpus = [];
     this.golds = [];
 
-    this.init = function(){
-        this.visible = this.getMatrix(this.i, this.j);
+    this.copy = {
+        holes: [],
+        wumpus: [],
+        golds: [],
+        visible: []
+    };
 
+    this.restart = function(){
+
+        this.visible = this.copyMatrix(this.copy.visible);
         this.visible[0][0] = 1;
 
-        this.holes.push({i:2, j:2});
-        this.holes.push({i:3, j:2});
-
-        this.wumpus.push({i:2, j:4});
-
-        this.golds.push({i:3, j:3});
-    }
+        this.golds = this.copyArrayWithObjects(this.copy.golds);
+		this.holes = this.copyArrayWithObjects(this.copy.holes);
+		this.wumpus = this.copyArrayWithObjects(this.copy.wumpus);
+    };
 
 	this.randomInitialization = function(){
-        this.visible = this.getMatrix(this.i, this.j);
-        this.visible[0][0] = 1;
 
-		this.golds = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
-		this.holes = this.generateRandomItens(Math.floor(this.i*this.j/16*2));
-		this.wumpus = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
+        this.copy.visible = this.getMatrix(this.i, this.j);
+        this.copy.golds = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
+		this.copy.holes = this.generateRandomItens(Math.floor(this.i*this.j/16*2));
+		this.copy.wumpus = this.generateRandomItens(Math.floor(this.i*this.j/16*1));
+
+        this.restart();
     };
+
+    this.copyMatrix = function(array){
+
+        let copy = [];
+
+        array.forEach(e => {
+            copy.push([...e]);
+        })
+
+        return copy;
+    }
+
+    this.copyArrayWithObjects = function(array){
+
+        let copy = [];
+
+        array.forEach(e => {
+            copy.push(Object.assign({}, e));
+        })
+
+        return copy;
+    }
 
 	this.generateRandomItens = function(max){
 		var items = [];
 
 		while(items.length < max){
+
 			var i = this.getRandomIntegerNumber(0, this.i-1);
 			var j = this.getRandomIntegerNumber(0, this.j-1);
 
 			if(this.validPosition(i, j)){
 				if( ! this.contains(items, i, j)){
-					if( ! this.contains(this.golds, i, j)){
-						if( ! this.contains(this.holes, i, j)){
-							if( ! this.contains(this.wumpus, i, j)){
+					if( ! this.contains(this.copy.golds, i, j)){
+						if( ! this.contains(this.copy.holes, i, j)){
+							if( ! this.contains(this.copy.wumpus, i, j)){
 								items.push({i:i, j:j});
 							}
 						}

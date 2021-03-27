@@ -5,34 +5,41 @@ var canvas,			// Canvas DOM element
 	env,
 	isAlive = true,
 	isFinished = false,
-	currentLanguage = "en-US",
-	language,
     player;
 
-function init(){
+function restart(){
 
-    console.log("Welcome to Wumpus World Simulator");
+    if (!env){
+        env = new Environment(15, 8, 64, 64);
+    }
 
-    // Declare the canvas and rendering context
-	canvas = document.getElementById("canvas");
-	ctx = canvas.getContext("2d");
+    // We need to create a new environment if it is the first time of the player won
+    if (isFinished) {
+        env = new Environment(15, 8, 64, 64);
+    } else {
+        env.restart();
+    }
 
-	language = [];
+    player = new Player(env, 0, 0);
 
-	env = new Environment(15, 8, 64, 64);
+    $("#modal-win").modal("hide");
+    $("#modal-game-over").modal("hide");
+    $('#btn-remove-walls').prop('checked', false);
 
-	player = new Player(env, 0, 0);
+    resources.stop("game-over");
+    resources.stop("win");
+    resources.play("theme", false);
 
-    keys = new Keys();
+    isAlive = true,
+	isFinished = false,
 
-    // Start listening for events
-    setEventHandlers();
+    animate();
 }
 
 function setEventHandlers(){
-	// Keyboard
+
+    // Keyboard
 	window.addEventListener("keydown", onKeydown, false);
-	window.addEventListener("keyup", onKeyup, false);
 
 	// Window resize
 	resizeCanvas();
@@ -52,13 +59,6 @@ function onKeydown(e) {
 	keys.onKeyDown(e);
 
 	animate();
-};
-
-// Keyboard key up
-function onKeyup(e) {
-	// if (player) {
-	// 	keys.onKeyUp(e);
-	// };
 };
 
 function update(){
@@ -89,6 +89,9 @@ function update(){
 		}
 	}
 
+    console.log("hasAHole", env.hasAHole(player));
+    console.log("hasAWumpus", env.hasAWumpus(player));
+
 	if(env.hasAHole(player) || env.hasAWumpus(player)){
 		isAlive = false;
 	}
@@ -98,15 +101,24 @@ function update(){
 	$("#gold").html(env.golds.length);
 
 	if(!isAlive){
-		$("#modal-game-over").modal("show");
-        resources.play("game-over");
-        resources.stop("theme");
+		displayGameOver();
 	}
+
 	if(isFinished){
-		$("#modal-win").modal("show");
-        resources.play("win");
-        resources.stop("theme");
+        displayCongratulations();
 	}
+}
+
+function displayGameOver(){
+    $("#modal-game-over").modal("show");
+    resources.play("game-over", false);
+    resources.stop("theme");
+}
+
+function displayCongratulations(){
+    $("#modal-win").modal("show");
+    resources.play("win", false);
+    resources.stop("theme");
 }
 
 function draw(){
@@ -176,7 +188,12 @@ function changeLanguageTo(locale){
 
 $(function(){
 
-	init();
+	console.log("Welcome to Wumpus World Simulator");
+
+    // Declare the canvas and rendering context
+	canvas = document.getElementById("canvas");
+	ctx = canvas.getContext("2d");
+    keys = new Keys();
 
     $.i18n.debug = true;
 
@@ -204,11 +221,13 @@ $(function(){
 
     $('#btn-remove-walls').change(function() {
         env.removeWalls = this.checked;
-        draw();
+        // Remove focus
+        $(this).blur();
+        animate();
     });
 
     $(".btn-restart").click(function(){
-		location.reload();
+		restart();
 	});
 
 	$(".card-game").width(canvas.width);
@@ -220,13 +239,18 @@ $(function(){
 
     resources.load().then(() =>{
 
-        resources.play("theme");
+        resources.play("theme", false);
 
         var hash = window.location.hash;
 
 		if (hash) {
 			loadEnvironment(hash);
 		}
+
+        restart();
+
+        // Start listening for events
+        setEventHandlers();
 
 		animate();
     })

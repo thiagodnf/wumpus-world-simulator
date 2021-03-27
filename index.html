@@ -109,10 +109,10 @@
                             <button data-toggle="modal" data-target="#modal-share" class="btn btn-success" data-i18n="share">Share</button>
                         </div>
                         <div class="tab-pane fade mt-4" id="settings">
-                            <form>
+                            <form >
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="true" id="btn-remove-walls">
-                                    <label class="form-check-label" for="btn-remove-walls" data-i18n="settings-remove-walls">Remove Walls</label>
+                                    <input class="form-check-input" tabindex="-1" type="checkbox" value="true" id="btn-remove-walls">
+                                    <label class="form-check-label" tabindex="-1"  for="btn-remove-walls" data-i18n="settings-remove-walls">Remove Walls</label>
                                 </div>
                             </form>
                         </div>
@@ -213,7 +213,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
 
     <!-- Application -->
-    <script src="js/core/audio.js"></script>
     <script src="js/core/resources.js"></script>
     <script src="js/core/environment.js"></script>
     <script src="js/core/keys.js"></script>
