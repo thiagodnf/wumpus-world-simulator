@@ -36,15 +36,6 @@ function restart(){
     animate();
 }
 
-function setEventHandlers(){
-
-    // Keyboard
-	window.addEventListener("keydown", onKeydown, false);
-
-	// Window resize
-	resizeCanvas();
-}
-
 // Browser window resize
 function resizeCanvas(){
 	canvas.width = env.width * env.i;
@@ -258,8 +249,10 @@ $(function(){
 
         restart();
 
+        resizeCanvas();
+
         // Start listening for events
-        setEventHandlers();
+        window.addEventListener("keydown", onKeydown, false);
 
 		animate();
     })
