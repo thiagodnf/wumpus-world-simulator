@@ -239,6 +239,13 @@ $(function(){
 		$('#textarea-link').text(getLink());
 	});
 
+    Howler.volume(0.3);
+
+    $("#btn-volume").change(function(event){
+        event.preventDefault();
+        Howler.volume($(this).val());
+    });
+
     resources.load().then(() =>{
 
         resources.play("theme", false);
