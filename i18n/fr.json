@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chaima Abid"
+		],
+		"locale": "fr"
+	},
+	"breeze": "Brise",
+    "stench": "Puanteur",
+    "score": "Score",
+    "arrow": "Flèche",
+    "remaining-golds": "Ors restants",
+    "controls": "Touches de Contrôle",
+    "source-code": "Code source",
+    "close": "Fermer",
+    "restart": "Recommencer",
+    "game-over": "Fin du jeu",
+    "congratulations": "Félicitations",
+    "share": "Partager",
+    "settings": "Paramètres",
+    "info": "Info",
+    "settings-remove-walls": "Enlever les murs",
+    "settings-volume": "Volume",
+    "no-canvas-support": "Désolé, le navigateur ne supporte pas le jeu",
+    "en_us": "Anglais (États-Unis)",
+    "pt_br": "Portugais (Brésil)",
+    "fr": "French",
+    "ar": "Arabic"
+}

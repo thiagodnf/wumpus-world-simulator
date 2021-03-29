@@ -196,7 +196,9 @@ $(function(){
 
     $.i18n().load( {
         en_us: 'i18n/en_us.json',
-        pt_br: 'i18n/pt_br.json'
+        pt_br: 'i18n/pt_br.json',
+        ar: 'i18n/ar.json',
+        fr: 'i18n/fr.json'
     }).done( function() {
         changeLanguageTo($.i18n().locale);
     });

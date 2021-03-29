@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chaima Abid"
+		],
+		"locale": "ar"
+	},
+	"breeze": "نسيم",
+    "stench": "رائحة كريهة",
+    "score": "النتيجة",
+    "arrow": "السهم",
+    "remaining-golds": "الذهب المتبقي",
+    "controls": "مفاتيح التحكم",
+    "source-code": "مصدر الرمز",
+    "close": "إغلاق",
+    "restart": "البدء من جديد",
+    "game-over": "انتهت اللعبة",
+    "congratulations": "تهانينا",
+    "share": "نشر",
+    "settings": "إعدادات",
+    "info": "معلومات",
+    "settings-remove-walls": "إزالة الجدران",
+    "settings-volume": "الصوت",
+    "no-canvas-support": "عذرا تعذر عرض اللعبة على هذا المتصفح",
+    "en_us": "الإنجليزية (الولايات المتحدة الأمريكية)",
+    "pt_br": "البرتغالية (البرازيل)",
+    "fr": "French",
+    "ar": "Arabic"
+}
