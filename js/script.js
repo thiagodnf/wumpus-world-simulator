@@ -160,7 +160,7 @@ function loadEnvironment(hash){
 }
 
 function getCurrentVolume(){
-    return localStorage.getItem("wws-volume") || 0.2;
+    return localStorage.getItem("wws-volume") || 0.1;
 }
 
 function changeVolumeTo(level){
@@ -179,6 +179,12 @@ function getCurrentLanguage(){
 function changeLanguageTo(locale){
 
     console.log("Changing language to", locale);
+
+    if (locale == "ar") {
+        $("html[lang=en]").attr("dir", "rtl")
+    } else {
+        $("html[lang=en]").attr("dir", "ltr")
+    }
 
     // Define the current language
     $.i18n().locale = locale;
