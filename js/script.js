@@ -159,6 +159,19 @@ function loadEnvironment(hash){
 	animate();
 }
 
+function getCurrentVolume(){
+    return localStorage.getItem("wws-volume") || 0.2;
+}
+
+function changeVolumeTo(level){
+
+    console.log("Changing volume to", level);
+
+    Howler.volume(level);
+
+    localStorage.setItem("wws-volume", level);
+}
+
 function getCurrentLanguage(){
     return localStorage.getItem("wws-locale") || 'en_us';
 }
@@ -232,14 +245,16 @@ $(function(){
 		$('#textarea-link').text(getLink());
 	});
 
-    Howler.volume(0.3);
+    changeVolumeTo(getCurrentVolume());
+
+    $("#btn-volume").val(getCurrentVolume().toString());
 
     $("#btn-volume").change(function(event){
         event.preventDefault();
-        Howler.volume($(this).val());
+        changeVolumeTo($(this).val());
     });
 
-    resources.load().then(() =>{
+    resources.load().then(() => {
 
         resources.play("theme", false);
 
