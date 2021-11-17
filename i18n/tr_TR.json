@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Egehan Acar"
+		],
+		"locale": "tr_TR"
+	},
+	"breeze": "Esinti",
+    "stench": "Pis Koku",
+    "score": "Skor",
+    "arrow": "Ok",
+    "remaining-golds": "Kalan Altın",
+    "controls": "Kontroller",
+    "source-code": "Kaynak Kodu",
+    "close": "Kapat",
+    "restart": "Yeniden Başla",
+    "game-over": "Oyun Bitti",
+    "congratulations": "Tebrikler",
+    "share": "Paylaş",
+    "settings": "Ayarlar",
+    "info": "Bilgi",
+    "settings-remove-walls": "Duvarları Kaldır",
+    "settings-volume": "Ses",
+    "no-canvas-support": "Üzgünüz, tarayıcı kanvasları desteklemiyor",
+    "en_us": "İngilizce (Birleşmiş Devletler)",
+    "pt_br": "Portekizce (Brezilya)",
+    "fr": "Fransızca",
+    "ar": "Arapça",
+    "tr_TR": "Türkçe (Türkiye)"
+}
