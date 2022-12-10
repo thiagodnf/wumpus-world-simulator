@@ -20,7 +20,9 @@ Access the simulator [here](http://thiagodnf.github.io/wumpus-world-simulator/).
 
 ## Screenshot
 
-![alt tag](https://raw.githubusercontent.com/thiagodnf/wumpus-world-simulator/master/img/screenshot.png)
+<kbd>
+  <img class="screenshot" src="https://raw.githubusercontent.com/thiagodnf/wumpus-world-simulator/master/img/screenshot.png"/>
+</kbd>
 
 ## Languages
 The Wumpus World Simulator is available at following languages:
