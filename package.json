@@ -18,7 +18,7 @@
 	},
 	"homepage": "http://thiagodnf.github.io/wumpus-world-simulator",
 	"devDependencies": {
-		"nodemon": "^2.0.7"
+		"nodemon": "^2.0.22"
 	},
 	"dependencies": {
 		"connect": "^3.7.0",
