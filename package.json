@@ -5,7 +5,10 @@
 	"main": "app.js",
 	"scripts": {
 		"start": "node app.js",
-		"dev": "nodemon app.js"
+		"dev": "nodemon app.js",
+        "lint": "npx eslint .",
+        "lint-fix": "npx eslint . --fix",
+        "update-dependencies": "ncu -u"
 	},
 	"repository": {
 		"type": "git",
@@ -18,10 +21,10 @@
 	},
 	"homepage": "http://thiagodnf.github.io/wumpus-world-simulator",
 	"devDependencies": {
-		"nodemon": "^2.0.7"
+		"nodemon": "3.0.1"
 	},
 	"dependencies": {
-		"connect": "^3.7.0",
-		"serve-static": "^1.14.1"
+		"connect": "3.7.0",
+		"serve-static": "1.15.0"
 	}
 }
