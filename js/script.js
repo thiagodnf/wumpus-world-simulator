@@ -207,6 +207,11 @@ $(function(){
 	ctx = canvas.getContext("2d");
     keys = new Keys();
 
+    // To style all selects
+    $('select').selectpicker({
+        dropdownAlignRight: true
+    });
+
     $.i18n.debug = true;
 
     $.i18n({
@@ -221,10 +226,6 @@ $(function(){
         tr_TR: 'i18n/tr_TR.json'
     }).done( function() {
         changeLanguageTo($.i18n().locale);
-    });
-
-    $('#select-language').selectpicker({
-        dropdownAlignRight: true
     });
 
     $('#select-language').selectpicker('val', $.i18n().locale);
