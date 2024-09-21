@@ -28,6 +28,9 @@ Access the simulator [here](http://thiagodnf.github.io/wumpus-world-simulator/).
 The Wumpus World Simulator is available at following languages:
 * en-US
 * pt-BR
+* ar
+* fr
+* tr_TR
 
 ## Questions or Suggestions
 
