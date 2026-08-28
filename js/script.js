@@ -190,8 +190,12 @@ function changeLanguageTo(locale){
     $.i18n().locale = locale;
     // Change all text on the webpage
     $('body').i18n();
-    // We need to refresh the bootstrap-select
-    $('#select-language').selectpicker('refresh');
+    // We need to refresh the bootstrap-select. Because of a bug in the beta3, we have
+    // to destroy and recreate the select in the meantime.
+    $('#select-language').selectpicker('destroy');
+    $('#select-language').selectpicker({
+        dropdownAlignRight: true
+    })
     // Save the current locate on the locale storage to reload
     localStorage.setItem("wws-locale", locale);
     // We need to redraw the canvas as well
